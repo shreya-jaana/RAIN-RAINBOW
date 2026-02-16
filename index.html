@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shreya & Sarib - Our Story</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+overflow-x:hidden;
+scroll-behavior:smooth;
+}
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+position:relative;
+}
+
+/* ---------- RAIN ---------- */
+.rain{
+position:absolute;
+top:0;left:0;width:100%;height:100%;
+overflow:hidden;
+pointer-events:none;
+}
+.drop{
+position:absolute;
+width:2px;height:20px;
+background:rgba(255,255,255,0.3);
+animation:fall linear infinite;
+}
+@keyframes fall{
+to{transform:translateY(100vh);}
+}
+
+/* ---------- INTRO ---------- */
+.intro h1{
+font-family:'Dancing Script',cursive;
+font-size:3rem;
+text-shadow:0 0 20px rgba(255,255,255,0.6);
+}
+.highlight{
+color:#ff9ecf;
+text-shadow:0 0 15px #ff4da6;
+}
+.btn{
+margin-top:30px;
+padding:12px 28px;
+background:transparent;
+border:1px solid rgba(255,255,255,0.5);
+color:white;
+border-radius:30px;
+cursor:pointer;
+transition:0.3s;
+}
+.btn:hover{
+background:rgba(255,255,255,0.2);
+}
+
+/* ---------- GAME ---------- */
+.game-box{
+margin-top:30px;
+background:rgba(255,255,255,0.1);
+padding:40px;
+border-radius:15px;
+max-width:500px;
+min-height:120px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:1.2rem;
+animation:fade 1s;
+}
+@keyframes fade{
+from{opacity:0;transform:scale(0.9);}
+to{opacity:1;transform:scale(1);}
+}
+
+/* ---------- WHEEL ---------- */
+.wheel-container{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+.wheel{
+width:260px;
+height:260px;
+border-radius:50%;
+background:conic-gradient(
+#ff6b9d 0deg 45deg,
+#feca57 45deg 90deg,
+#48dbfb 90deg 135deg,
+#ff9ff3 135deg 180deg,
+#54a0ff 180deg 225deg,
+#5f27cd 225deg 270deg,
+#00d2d3 270deg 315deg,
+#ff9f43 315deg 360deg
+);
+transition:transform 4s ease-out;
+box-shadow:0 0 30px rgba(255,255,255,0.4);
+position:relative;
+}
+.pointer{
+width:0;height:0;
+border-left:15px solid transparent;
+border-right:15px solid transparent;
+border-bottom:25px solid white;
+margin-bottom:10px;
+}
+.result{
+margin-top:20px;
+font-size:1.3rem;
+min-height:40px;
+}
+
+/* ---------- LETTER ---------- */
+.letter-box{
+background:#f3e5c3;
+color:#3e2c1c;
+padding:40px;
+max-width:700px;
+border-radius:10px;
+font-family:'Dancing Script',cursive;
+font-size:1.3rem;
+line-height:1.7;
+box-shadow:0 0 30px rgba(0,0,0,0.3);
+}
+.signature{
+margin-top:30px;
+text-align:right;
+font-size:1.4rem;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:768px){
+.intro h1{font-size:2rem;}
+.wheel{width:200px;height:200px;}
+.game-box{font-size:1rem;padding:25px;}
+}
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<section class="intro" id="intro">
+<div class="rain"></div>
+<h1>
+Rain meets the Rainbow…<br>
+<span class="highlight">Shreya</span> meets 
+<span class="highlight">Sarib</span>
+</h1>
+<button class="btn" onclick="goTo('game')">Let’s Begin Our Story</button>
+</section>
+
+<!-- GAME -->
+<section id="game">
+<h2>💌 Let’s Play a Game</h2>
+
+<div class="game-box" id="messageBox">
+Click below to reveal our memories...
+</div>
+
+<button class="btn" onclick="nextMessage()">Reveal Next</button>
+
+<div id="unlockArea" style="display:none;">
+<p style="margin-top:20px;">✨ You’ve unlocked something special…</p>
+<button class="btn" onclick="goTo('wheel')">Spin Your Future</button>
+</div>
+</section>
+
+<!-- WHEEL -->
+<section id="wheel">
+<h2>🎡 Spin Your Future</h2>
+<div class="wheel-container">
+<div class="pointer"></div>
+<div class="wheel" id="wheel"></div>
+<button class="btn" onclick="spin()">Spin</button>
+<div class="result" id="result"></div>
+<button class="btn" id="letterBtn" style="display:none;" onclick="goTo('letter')">
+Read My Letter
+</button>
+</div>
+</section>
+
+<!-- LETTER -->
+<section id="letter">
+<div class="letter-box">
+My dearest Sarib,<br><br>
+
+If love were ink and time were paper, I would write your name across centuries.
+From the moment our paths crossed like rain meeting the rainbow, my world changed forever.
+You are my calm after every storm, my warmth in the coldest nights,
+my favorite notification, and my safest place.
+
+In you, I found not just love,
+but home.
+
+I imagine our future —
+late night calls,
+rainy dates,
+old hands still holding tightly,
+and laughter echoing through the years.
+
+No matter what destiny spins for us,
+my heart will always spin back to you.
+
+Forever Yours,<br>
+<div class="signature">Shreya</div>
+</div>
+</section>
+
+<script>
+/* Rain */
+const rainContainer=document.querySelector('.rain');
+for(let i=0;i<80;i++){
+let drop=document.createElement('div');
+drop.className='drop';
+drop.style.left=Math.random()*100+'%';
+drop.style.animationDuration=(Math.random()*2+1)+'s';
+rainContainer.appendChild(drop);
+}
+
+/* Scroll */
+function goTo(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+/* GAME LOGIC */
+const messages=[
+"You are my favorite notification.",
+"Every rain reminds me of us.",
+"You are my safest place.",
+"My heart feels calm with you.",
+"You make ordinary days magical.",
+"You are my late night peace.",
+"With you, I found home.",
+"You are my forever person.",
+"Even silence feels beautiful with you.",
+"You are my always."
+];
+
+let index=0;
+function nextMessage(){
+if(index<messages.length){
+document.getElementById("messageBox").innerText=messages[index];
+index++;
+if(index===messages.length){
+setTimeout(()=>{
+document.getElementById("unlockArea").style.display="block";
+},1000);
+}
+}
+}
+
+/* WHEEL */
+const options=[
+"Forever Together",
+"Late Night Calls",
+"Endless Hugs",
+"Future Adventures",
+"Marriage Bells",
+"Old Together",
+"Rainy Dates",
+"One Soul"
+];
+
+function spin(){
+const wheel=document.getElementById("wheel");
+const result=document.getElementById("result");
+const letterBtn=document.getElementById("letterBtn");
+
+let random=Math.floor(Math.random()*360)+1080;
+wheel.style.transform=`rotate(${random}deg)`;
+
+setTimeout(()=>{
+let deg=random%360;
+let selected=Math.floor(deg/45);
+result.innerText=options[selected];
+letterBtn.style.display="inline-block";
+},4000);
+}
+</script>
+
+</body>
+</html>
